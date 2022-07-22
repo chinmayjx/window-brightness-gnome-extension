@@ -54,7 +54,7 @@ class Extension {
             this.bindSlider(slider, overlay);
         }
     }
-    windowHasSlider(){
+    windowHasSlider() {
         for (let child of this.windowActor.get_children()) {
             if (child.name === SLIDER_NAME) {
                 return [child, child.first_child];
@@ -63,10 +63,19 @@ class Extension {
         return [null, null];
     }
     insertSlider(overlay) {
-        let sliderContainer = new St.BoxLayout({ name: SLIDER_NAME,style: "background-color: #000000; padding: 10px; border-radius: 5px;", width: 200, x: this.windowActor.width / 2 - 100, y: this.windowRect.y - this.windowActor.y + this.windowRect.height - 50 })
+        let sliderContainer = new St.BoxLayout({ name: SLIDER_NAME, style: "background-color: #000000; padding: 10px; border-radius: 5px;", width: 200, x: this.windowActor.width / 2 - 100, y: this.windowRect.y - this.windowActor.y + this.windowRect.height - 50 })
         let slider = new imports.ui.slider.Slider(1 - overlay.get_background_color().alpha / 255);
+        slider.connect('scroll-event', (actor, event) => {
+            log("scroll")
+            return slider.emit('scroll-event', event);
+        });
         sliderContainer.add_child(slider);
         this.windowActor.add_child(sliderContainer);
+
+        this.windowActor.connect("notify::size", () => {
+            this.windowRect = this.focusedWindow.get_frame_rect();
+            sliderContainer.set_position(this.windowActor.width / 2 - 100, this.windowRect.y - this.windowActor.y + this.windowRect.height - 50)
+        })
         return [sliderContainer, slider];
     }
     insertOverlay() {
@@ -77,6 +86,13 @@ class Extension {
         }
         let overlay = new Clutter.Actor({ name: OVERLAY_NAME, background_color: Clutter.Color.new(0, 0, 0, 0), width: this.windowRect.width, height: this.windowRect.height, x: this.windowRect.x - this.windowActor.x, y: this.windowRect.y - this.windowActor.y });
         this.windowActor.add_child(overlay);
+
+        this.windowActor.connect("notify::size", () => {
+            this.windowRect = this.focusedWindow.get_frame_rect();
+            overlay.set_width(this.windowRect.width);
+            overlay.set_height(this.windowRect.height);
+            overlay.set_position(this.windowRect.x - this.windowActor.x, this.windowRect.y - this.windowActor.y)
+        })
         return overlay;
     }
     bindSlider(slider, overlay) {
