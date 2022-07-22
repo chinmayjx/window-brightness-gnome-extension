@@ -1,0 +1,8 @@
+{
+  "name": "Window Brightness",
+  "description": "Allows to set brightness for a window.",
+  "uuid": "window.brightness@chinmayjain08",
+  "shell-version": [
+    "40"
+  ]
+}
