@@ -43,23 +43,22 @@ class Extension {
         this.focusedWindow = global.display.get_focus_window();
         this.windowRect = this.focusedWindow.get_frame_rect();
         this.windowActor = this.focusedWindow.get_compositor_private();
-        let [sliderContainer, slider] = this.windowHasSlider();
+        let slider = this.windowHasSlider();
         if (slider) {
-            sliderContainer.destroy();
+            slider.get_parent().destroy();
         }
         else {
             let overlay = this.insertOverlay();
-            let [sliderContainer, slider] = this.insertSlider(overlay);
+            let slider = this.insertSlider(overlay);
             this.bindSlider(slider, overlay);
         }
     }
     windowHasSlider() {
         for (let child of this.windowActor.get_children()) {
             if (child.name === SLIDER_NAME) {
-                return [child, child.first_child];
+                return child.first_child;
             }
         }
-        return [null, null];
     }
     insertSlider(overlay) {
         let sliderContainer = new St.BoxLayout({ name: SLIDER_NAME, style: "background-color: #000000; padding: 10px; border-radius: 5px;", width: 200, x: this.windowActor.width / 2 - 100, y: this.windowRect.y - this.windowActor.y + this.windowRect.height - 50 })
@@ -71,7 +70,7 @@ class Extension {
             this.windowRect = this.focusedWindow.get_frame_rect();
             sliderContainer.set_position(this.windowActor.width / 2 - 100, this.windowRect.y - this.windowActor.y + this.windowRect.height - 50)
         })
-        return [sliderContainer, slider];
+        return slider;
     }
     insertOverlay() {
         for (let child of this.windowActor.get_children()) {
