@@ -61,7 +61,7 @@ class Extension {
         }
     }
     insertSlider(overlay) {
-        let sliderContainer = new St.Bin({ name: SLIDER_NAME, reactive: true, style: "background-color: #000000; padding: 10px; border-radius: 5px;", width: 200, x: this.windowActor.width / 2 - 100, y: this.windowRect.y - this.windowActor.y + this.windowRect.height - 50 })
+        let sliderContainer = new St.Bin({ name: SLIDER_NAME, reactive: true, style: "background-color: #000000; padding: 10px 15px; border-radius: 5px;", width: 200, x: this.windowActor.width / 2 - 100, y: this.windowRect.y - this.windowActor.y + this.windowRect.height - 50 })
         let slider = new imports.ui.slider.Slider(1 - overlay.get_background_color().alpha / 255);
         sliderContainer.set_child(slider);
         this.windowActor.add_child(sliderContainer);
