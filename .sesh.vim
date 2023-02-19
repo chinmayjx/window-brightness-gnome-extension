@@ -13,8 +13,9 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +49 extension.js
-badd +1 term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash
+badd +70 extension.js
+badd +16 schemas/schema.gschema.xml
+badd +24 term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//32023:bash
 argglobal
 %argdel
 edit extension.js
@@ -38,13 +39,12 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
-exe '2resize ' . ((&lines * 41 + 30) / 60)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
-exe '3resize ' . ((&lines * 15 + 30) / 60)
-exe 'vert 3resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 1resize ' . ((&columns * 78 + 106) / 213)
+exe '2resize ' . ((&lines * 45 + 30) / 60)
+exe 'vert 2resize ' . ((&columns * 134 + 106) / 213)
+exe '3resize ' . ((&lines * 11 + 30) / 60)
+exe 'vert 3resize ' . ((&columns * 134 + 106) / 213)
 argglobal
-balt term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -53,38 +53,17 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=10
 setlocal nofen
-let s:l = 49 - ((28 * winheight(0) + 28) / 57)
+let s:l = 75 - ((39 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 49
-normal! 0
+keepjumps 75
+normal! 05|
 wincmd w
 argglobal
-if bufexists(fnamemodify("extension.js", ":p")) | buffer extension.js | else | edit extension.js | endif
+if bufexists(fnamemodify("schemas/schema.gschema.xml", ":p")) | buffer schemas/schema.gschema.xml | else | edit schemas/schema.gschema.xml | endif
 if &buftype ==# 'terminal'
-  silent file extension.js
-endif
-balt term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash
-setlocal fdm=indent
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=10
-setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 20) / 41)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-wincmd w
-argglobal
-if bufexists(fnamemodify("term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash", ":p")) | buffer term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash | else | edit term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash | endif
-if &buftype ==# 'terminal'
-  silent file term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash
+  silent file schemas/schema.gschema.xml
 endif
 balt extension.js
 setlocal fdm=indent
@@ -95,18 +74,39 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=10
 setlocal nofen
-let s:l = 37 - ((14 * winheight(0) + 7) / 15)
+let s:l = 18 - ((0 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 37
+keepjumps 18
+normal! 024|
+wincmd w
+argglobal
+if bufexists(fnamemodify("term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//32023:bash", ":p")) | buffer term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//32023:bash | else | edit term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//32023:bash | endif
+if &buftype ==# 'terminal'
+  silent file term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//32023:bash
+endif
+balt schemas/schema.gschema.xml
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=10
+setlocal nofen
+let s:l = 11 - ((10 * winheight(0) + 5) / 11)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 11
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
-exe '2resize ' . ((&lines * 41 + 30) / 60)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
-exe '3resize ' . ((&lines * 15 + 30) / 60)
-exe 'vert 3resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 1resize ' . ((&columns * 78 + 106) / 213)
+exe '2resize ' . ((&lines * 45 + 30) / 60)
+exe 'vert 2resize ' . ((&columns * 134 + 106) / 213)
+exe '3resize ' . ((&lines * 11 + 30) / 60)
+exe 'vert 3resize ' . ((&columns * 134 + 106) / 213)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -126,5 +126,5 @@ nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
-let g:CJWinBuffs = {'0': ['term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//22507:node extension.js', 'extension.js'], '1': ['extension.js', 'term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash', '/home/chinmay/.config/nvim/init.vim', 'extension.js'], '2': ['extension.js'], '3': ['term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash', 'extension.js']}
+let g:CJWinBuffs = {'0': ['term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash', 'extension.js'], '1': ['extension.js', 'term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash', '/home/chinmay/.config/nvim/init.vim', 'extension.js'], '2': ['schemas/schema.gschema.xml', '/home/chinmay/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08/schemas', 'extension.js', 'term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash'], '3': ['term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//32023:bash', 'schemas/schema.gschema.xml', 'extension.js', 'term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//21599:bash', 'term://~/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08//30277:bash']}
 let g:CJLoadedSeshName = '/home/chinmay/.local/share/gnome-shell/extensions/window.brightness@chinmayjain08'

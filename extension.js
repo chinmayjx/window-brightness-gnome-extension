@@ -67,13 +67,13 @@ class Extension {
     else wi.overlay.set_opacity(255);
   }
   decreaseBrightness() {
-    let wi = this.focusedWindow?.wbInfo;
-    if(!wi?.slider) this.wbInit();
+    this.wbInit();
+    let wi = this.focusedWindow.wbInfo;
     wi.slider.value -= 0.05;
   }
   increaseBrightness() {
-    let wi = this.focusedWindow?.wbInfo;
-    if(!wi?.slider) this.wbInit();
+    this.wbInit();
+    let wi = this.focusedWindow.wbInfo;
     wi.slider.value += 0.05;
   }
   toggleAction() {
