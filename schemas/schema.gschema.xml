@@ -2,8 +2,20 @@
 <schemalist>
     <schema id="org.gnome.shell.extensions.cj.window.brightness" path="/org/gnome/shell/extensions/cj/window/brightness/">
         <key name="dim" type="as">
-            <default><![CDATA[['<Super>B']]]></default>
+            <default><![CDATA[['<Super><Shift>B']]]></default>
             <summary>dim</summary>
+        </key>
+        <key name="toggle" type="as">
+            <default><![CDATA[['<Super>B']]]></default>
+            <summary>toggle</summary>
+        </key>
+        <key name="plus" type="as">
+            <default><![CDATA[['<Super>KP_Subtract']]]></default>
+            <summary>decrease</summary>
+        </key>
+        <key name="minus" type="as">
+            <default><![CDATA[['<Super>KP_Add']]]></default>
+            <summary>increase</summary>
         </key>
     </schema>
 </schemalist>
