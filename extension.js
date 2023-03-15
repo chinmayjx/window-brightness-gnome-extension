@@ -62,6 +62,7 @@ class Extension {
     );
   }
   peekAction() {
+    this.wbInit();
     let wi = this.focusedWindow.wbInfo;
     if (wi.overlay.get_opacity() === 255) wi.overlay.set_opacity(0);
     else wi.overlay.set_opacity(255);
